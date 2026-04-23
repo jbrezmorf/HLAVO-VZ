@@ -7,6 +7,7 @@
 - directory `resources` contains project proposal and previous project reports  as source materials, do not modify anything there
 - directory `cgs` conatins proposed contribution to the report from partner: Česká Geologická služba as DOCX plain text + images
   do not modify that either
+- Keep all figures referenced from LaTeX sources in `fig/`. If a figure comes from `resources` or `CGS`, copy it into `fig/` first and reference only the copied file.
 - The report should partialy serve as Czech usage manual for the HLAVO SW and integrated system.
   Use HLAVO repository main branch: https://github.com/GeoMop/HLAVO
   
