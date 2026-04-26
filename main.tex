@@ -135,6 +135,7 @@
 \clearpage
 
 \section{Úvod}
+
 \label{sec:uvod}
 Předkládaná souhrnná výzkumná zpráva shrnuje průběh a výsledky projektu
 HLAVO pro potřeby Ministerstva životního prostředí. Projekt byl od počátku
@@ -409,13 +410,13 @@ odchylky. Tato kalibrace byla důležitá nejen pro spolehlivější interpretac
 terénních dat, ale i pro pozdější využití těchto měření v asimilačním
 schématu modelu.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.62\linewidth]{fig/uhelna_meteo_mapa.pdf}
-    \includegraphics[width=0.28\linewidth]{fig/meteo_stozar.pdf}
-    \caption{Lokalita povrchového monitoringu v Uhelné a schéma stožáru meteostanice použitého pro kontinuální sběr meteorologických dat.}
-    \label{fig:terenni-prace}
-\end{figure}
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.62\linewidth]{fig/uhelna_meteo_mapa.pdf}
+%     \includegraphics[width=0.28\linewidth]{fig/meteo_stozar.pdf}
+%     \caption{Lokalita povrchového monitoringu v Uhelné a schéma stožáru meteostanice použitého pro kontinuální sběr meteorologických dat.}
+%     \label{fig:terenni-prace}
+% \end{figure}
 
 Neméně důležitou součástí řešení byla laboratorní kolona, na níž bylo možné
 testovat profilové sondy, řízení experimentů a numerický model za lépe
@@ -504,118 +505,85 @@ ke kalibrovatelnému hlubokému modelu. Právě kombinace hustého lokálního
 monitoringu v Uhelné a širšího srovnání s vrty pozorovací sítě ČHMÚ dává
 projektu HLAVO obecnější význam přesahující jedinou studovanou lokalitu.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{fig/seznam_vrtu.png}
-    \caption{Přehled vrtů a monitorovacích bodů využitelných pro geologický a hydrogeologický popis lokality Uhelná \textcolor{red}{pozn. PR: neplatná tabulka!, aktualizovaná (bez souřadnic) v sekci 6.2) }.}
-    \label{fig:seznam-vrtu}
-\end{figure}
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{fig/seznam_vrtu.png}
+%     \caption{Přehled vrtů a monitorovacích bodů využitelných pro geologický a hydrogeologický popis lokality Uhelná \textcolor{red}{pozn. PR: neplatná tabulka!, aktualizovaná (bez souřadnic) v sekci 6.2) }.}
+%     \label{fig:seznam-vrtu}
+% \end{figure}
 
 \section{Rešerše podobných řešení}
 \label{sec:reserse}
-Pro projekt HLAVO jsou relevantní čtyři literární směry: provozní měření
+Pro projekt HLAVO jsou relevantní čtyři oblasti výzkumu: provozní měření
 půdní vlhkosti v terénu, fyzikální modelování infiltrace ve vadózní zóně,
-interpretace hluboké perkolace a doplňování zásob podzemní vody a konečně
-asimilace dat do procesních modelů. Starší přehledové práce zůstávají
-užitečným metodickým východiskem \cite{Lekshmi2014,Cerny2009,Farthing_Ogden_2017},
-ale literatura z let 2020 až 2025 ukazuje zřetelný posun od izolovaných
-experimentů k víceškálovým monitorovacím a modelovacím sestavám, které mají
-sloužit přímo pro provozní interpretaci infiltrace a dotace podzemních vod.
+asimilace dat do procesních modelů a komplexní interpretace hluboké vadózní zóny a její dotace. Základní kontext poskytují startší přehledové práce (\cite{Lekshmi2014,Cerny2009,Farthing_Ogden_2017}). V této kapitole chceme poskytnout aktualizaci rešerše provedené v průběhu tvorby přihlášky projektu.
 
-V oblasti monitoringu půdní vlhkosti se recentní literatura soustředí méně na
-samotný princip senzoru a více na kvalitu instalace, kalibraci, reprezentativnost
-měření a kombinaci různých prostorových měřítek. Praktický význam má zejména
-standardizace instalace a provozu profilových čidel v nenarušené půdě
-\cite{CaldwellEtAl2022}. Současně se prosazují přístupy, které doplňují bodová
-\textit{in situ} měření o plošněji reprezentativní metody, například
-cosmic-ray neutron sensing pro přechod mezi profilem a polem
+V oblasti monitoringu půdní vlhkosti se novější publikace méně soustředí na
+samotný principy senzorů a více na kvalitu instalace, kalibraci, reprezentativnost měření a kombinaci různých prostorových měřítek. Praktický význam má zejména standardizace instalace a provozu profilových čidel v nenarušené půdě \cite{CaldwellEtAl2022}. 
+Zárověň se objevují nové metody pro monitoring vlhkosti na větších oblastech. Například snímání pomocí neutronů indukovaných kosmickým zářením (CRNS)
 \cite{RascheEtAl2024CRNS}, případně nové distribuované postupy založené na
 optických vláknech a nepřímém snímání dynamiky vlhkosti ve vadózní zóně
-\cite{ShenEtAl2024Fiber}. Přehled \textcite{Duarte_Hernandez_2024} potvrzuje,
-že právě kombinace více typů pozorování je dnes považována za vhodný směr
-v lokalitách s výraznou prostorovou variabilitou a omezenou možností přímého
-mapování infiltrace.
+\cite{ShenEtAl2024Fiber} pomocí vlivu na seismiku. 
 
-Numerické jádro obdobných řešení zůstává i v recentní literatuře založeno na
-Richardsově rovnici a na explicitním popisu proudění ve variably saturovaném
-prostředí. Vedle klasických numerických přístupů se však nově rozvíjejí
-inverzní a hybridní metody, které mají lépe využít řídká nebo nepravidelná
-data. \textcite{Bandai_Ghezzehei_2021} ukazují, že physics-informed neuronové
+Numerické modely zůstávají založeny na Richardsově rovnici a na explicitním popisu proudění ve variably saturovaném
+prostředí. Vedle klasických numerických přístupů se však nově datově orientované modely založené na hlubokém učení. \textcite{Bandai_Ghezzehei_2021} ukazují, že fyzkiálně informované neuronové
 sítě lze použít k odhadu konstitutivních vztahů i toků přímo z časových řad
-vlhkosti, aniž by se rezignovalo na fyzikální omezení úlohy. Podobně
+vlhkosti, aniž by se rezignovalo na fyzikální konzistentnost.
 \textcite{LanEtAl2024PIDL} rekonstruují infiltrační chování z omezených dat
 pomocí fyzikálně informovaného hlubokého učení. V širším kontextu
-\textcite{ShenEtAl2023Differentiable} popisují nástup diferenciovatelných
+\textcite{ShenEtAl2023Differentiable} popisují nástup diferencovatelných
 modelů, které propojují procesně založené rovnice s metodami strojového učení.
-Pro HLAVO je podstatné, že recentní směr nevede k nahrazení fyzikálního modelu
-čistě datovou aproximací, ale k přesnějšímu napojení měření na fyzikálně
-interpretovatelný model infiltrace.
+Použití vhodné neuronové sítě by významě urychlilo výpočetně náročné řešení infiltrace s asimilací pomocí Kalmánova filtru.
+
+Ensemble Kalman filter a jeho hydrologické varianty
+zůstávají základním rámcem pro asimilaci s průběžným měřením \cite{Evensen2003}, přičemž starší aplikace již
+ukázaly použitelnost pro procesně založené modely povrchového a podpovrchového
+proudění \cite{Camporese2009,Carlo2018}. Nové publikace asimilaci dále rozšiřují  pro více typů pozorování současně. Například \textcite{LiEtAl2025JointAssimilation}
+ukazují, že společná asimilace plošných dat o půdní vlhkosti z CRNS a
+hladin podzemní vody zlepšuje odhad zásob vody i rozdělení toků v systému.
 
 Samostatnou linií je interpretace hluboké vadózní zóny a odhadu dotace
 podzemních vod. Zde recentní práce zdůrazňují, že mezi povrchovým impulzem a
 odezvou zvodně může působit významná retence, zpoždění a nelinearita, kterou
 nelze dostatečně vystihnout jednoduchým převodem srážka--infiltrace. Přehled
 \textcite{HeEtAl2024DeepVadoseReview} shrnuje, že v hluboké vadózní zóně
-rozhoduje vrstevnatost, preferenční proudění i sezónní stav zásob. Polem
-podložené studie pak ukazují, že z časových řad půdní vlhkosti lze odhadovat
-toky ve vadózní zóně, ale jen při dobré znalosti lokální struktury prostředí
-\cite{SchueblEtAl2023}; heterogenita může zásadně změnit efektivitu řízené i
+rozhoduje vrstevnatost, preferenční proudění i sezónní stav zásob. Studie \cite{SchueblEtAl2023} ukazuje, že z časových řad půdní vlhkosti lze odhadovat
+toky ve vadózní zóně, ale jen při dobré znalosti lokální struktury prostředí.
+Heterogenita může zásadně změnit efektivitu řízené i
 přirozené dotace \cite{ZhouEtAl2023VadoseMAR}; a významnou roli hraje také
 hluboké akumulační zpoždění mezi infiltrací a skutečnou dotací zvodně
-\cite{LiEtAl2023LoessRecharge,BenitezNelsonEtAl2025}. V tomto směru jsou pro
-HLAVO stále inspirativní i práce O.~Dahana, které zavedly dlouhodobý monitoring
-hluboké vadózní zóny jako nástroj ochrany a interpretace podzemních vod
-\cite{Dahan_McDonald_Young_2003,Dahan_Talby_Yechieli_2009,Dahan2020}.
+\cite{LiEtAl2023LoessRecharge,BenitezNelsonEtAl2025}.
 
-Takové modely mají praktickou hodnotu teprve tehdy, když dokážou průběžně
-využívat aktuální data. Ensemble Kalman filter a jeho hydrologické varianty
-zůstávají základním rámcem \cite{Evensen2003}, přičemž starší aplikace již
-ukázaly použitelnost pro procesně založené modely povrchového a podpovrchového
-proudění \cite{Camporese2009,Carlo2018}. Recentní literatura jde dále směrem
-k asimilaci více typů pozorování současně. \textcite{LiEtAl2025JointAssimilation}
-ukazují, že společná asimilace plošně reprezentativních dat o půdní vlhkosti a
-hladin podzemní vody zlepšuje odhad zásob vody i rozdělení toků v systému.
-Právě zde je nejbližší vazba na cíle HLAVO: nestačí pouze simulovat infiltraci,
-ale je třeba průběžně korigovat stav modelu podle reálných profilových a
-hydrogeologických pozorování.
+Nové modely, zejména uplatnění neuronových sítí, lze relativně snadno zakomponovat do existujího výpočetního procesu. Naproti tomu aplikace nových snímacích metod by vyžadovala podstatné další investice. I ve světle nové rešerše je integrace postupů realizovaná v rámci projektu HLAVO inovativní a 
+v případě ověření během následujících let může být releventní pro predikci hladin podzemních vod.  
 
-Z recentní rešerše tedy plyne, že jednotlivé stavební kameny projektu mají v
-současné literatuře dobrou oporu, avšak většinou jako dílčí řešení. Literatura
-nabízí buď pokročilý monitoring půdní vlhkosti, nebo samostatné modely
-vadózní zóny, nebo asimilaci vybraných datových proudů. Méně běžné je jejich
-spojení do jednoho provozně použitelného řetězce, který by v konkrétní
-lokalitě kombinoval hustou síť profilových měření, meteorologická data,
-fyzikálně interpretovatelný infiltrační model a návaznou predikci hladin
-podzemní vody. Právě tuto integrační mezeru projekt HLAVO adresuje.
-
-\section{Vlastnosti výsledku: software HLAVO a funkční vzorek integrace}
-%AGENT: zatím zde skončit a dále neřešit
-Tato sekce má být jádrem zprávy a současně má částečně fungovat jako český
-rámcový návod k použití systému HLAVO. Text proto nemá být jen seznamem
-komponent, ale i vysvětlením jejich role, vstupů, výstupů a vazeb.
+\section{Predikční systém hladiny podzemní vody}
+Tato sekce popisuje výsledný systém pro predikci hladin podzemní vody. 
+Stručně představíme metodiku sběru dat z monitorovací sítě profilů půdní vlhkosti a popíšeme sběr a organizaci všech vstupních a výstupních dat softwarového řešení. Dále poskytneme teoretickou formulaci simulovaných procesů a schéma jejich implementace. Nakonec poskytneme přehled příkazů pro spoučtění simulací a webovou aplikaci pro vizualizaci vstupních a výstupních časových řad.
 
 \subsection{Síť měření vlhkosti}
-
+% AGENT: shrnout podrobný popis z následující kapitoly, pro podrobnosti odkázat tam.
 Zde bude stručně popsána použitá měřicí technika, rozmístění profilů a typ
 výstupních dat. Ve větším detailu je potřeba rozepsat praktické otázky
 instalace, napájení, servisu a dlouhodobého provozu sítě profilových měření,
 protože tyto informace nejsou plně popsány v technické softwarové
 dokumentaci.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.58\linewidth]{fig/uhelna_sondy.png}
-    \includegraphics[width=0.34\linewidth]{fig/instalace_site.png}
-    \caption{Pracovní výběr k popisu sítě měření vlhkosti: rozmístění profilových sond a detail instalace v terénu. \textcolor{red}{pozn. PR: aktualizovaný plánek v sekci 6.2) }}
-    \label{fig:sit-vlhkosti}
-\end{figure}
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.58\linewidth]{fig/uhelna_sondy.png}
+%     \includegraphics[width=0.34\linewidth]{fig/instalace_site.png}
+%     \caption{Pracovní výběr k popisu sítě měření vlhkosti: rozmístění profilových sond a detail instalace v terénu. \textcolor{red}{pozn. PR: aktualizovaný plánek v sekci 6.2) }}
+%     \label{fig:sit-vlhkosti}
+% \end{figure}
 
-\subsection{Automatický sběr meteorologických dat}
 
+\subsection{Sběr a organizace dat}
+% AGENT: popsat princip xarray, formátu zarr,  nástroje zarr-fuse a schémat
+% AGENT: popsat jaké schémata v SW co obsahují (viz. adresář HLAVO s linkem na 
+% aktuální projekt.
 Zde bude popsán sběr dat z veřejných zdrojů a jejich role pro výpočet
 evapotranspirace a povrchového modelu.
-
-\subsection{Organizace a ukládání dat}
 
 Zde bude vysvětlena role datových schémat, knihovny \texttt{zarr-fuse},
 využití \texttt{xarray} a formátu ZARR
@@ -636,20 +604,26 @@ informace bude možné odkázat na repozitář HLAVO \cite{HLAVO_GitHub}.
     \label{fig:hlavo-example}
 \end{figure}
 
-\subsection{Kalmánův filtr a povrchový model}
+\subsection{Teoretické základy modelu}
+% AGENT: Popsat Richardsovu rovnici a van Genuchtenův model.
+% AGENT: Pro popis povrchového modelu odkázat na vhodnou práci o Comunity LAnd Modelu, pouze shrnout jeho vstupní časové řady (meteo data a vegetaci)
+% AGENT: Popsat povrchový model kombinovaný s Unscented Kalmán filtrem.
+% AGENT: Popsat použité sekvenční sdružení
+% AGENT: Popsat kalibraci pomocí genetického algoritmu a cross-validaci na dlouhé časové řady hladin ve vrtech.
+
 
 Zde bude popsáno propojení Richardsova modelu, meteorologických vstupů a
 asimilace měření vlhkosti. Vhodné je zachovat věcnou úroveň podobnou zprávě
 za rok 2025.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.88\linewidth]{fig/kalman_kolona.pdf}
-    \caption{Pracovní obrázek k části o asimilaci dat: ukázka aplikace 1D modelu s Kalmánovým filtrem na datech z kolony.}
-    \label{fig:kalman-kolona}
-\end{figure}
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.88\linewidth]{fig/kalman_kolona.pdf}
+%     \caption{Pracovní obrázek k části o asimilaci dat: ukázka aplikace 1D modelu s Kalmánovým filtrem na datech z kolony.}
+%     \label{fig:kalman-kolona}
+% \end{figure}
 
-\subsection{Hluboký model vadózní zóny}
+\subsubsection{Hluboký model vadózní zóny}
 
 Zde bude popsána konstrukce hlubokého modelu z GIS podkladů a jeho role v
 predikci hladin podzemní vody. Pro základní rámec lze odkázat na MODFLOW 6
@@ -662,7 +636,11 @@ predikci hladin podzemní vody. Pro základní rámec lze odkázat na MODFLOW 6
     \label{fig:deep-model}
 \end{figure}
 
-\subsection{Integrovaný výpočetní systém}
+\subsection{Softwarové řešení}
+% AGENT: přehled příkazů pro poloautomatický sběr dat 
+% AGENT: dokumentace příkazu 'hlavo' a jeho podpříkazů
+% AGENT: příklad spouštění na clustru
+% AGENT: dashboard
 
 Zde bude popsáno, jak na sebe navazují měření, datové úložiště, povrchový
 model a hluboký model. Důležité je oddělit to, co je plně funkční, od toho,
