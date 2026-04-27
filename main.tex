@@ -563,11 +563,23 @@ Stručně představíme metodiku sběru dat z monitorovací sítě profilů půd
 
 \subsection{Síť měření vlhkosti}
 % AGENT: shrnout podrobný popis z následující kapitoly, pro podrobnosti odkázat tam.
-Zde bude stručně popsána použitá měřicí technika, rozmístění profilů a typ
-výstupních dat. Ve větším detailu je potřeba rozepsat praktické otázky
-instalace, napájení, servisu a dlouhodobého provozu sítě profilových měření,
-protože tyto informace nejsou plně popsány v technické softwarové
-dokumentaci.
+Predikční systém HLAVO je založen na tom, že infiltrace není odhadována jen z
+meteorologických vstupů, ale je průběžně korigována terénním měřením vlhkosti
+v několika hloubkách. Síť profilových sond proto tvoří základní vazbu mezi
+reálným stavem vadózní zóny a numerickým modelem. V projektu byly použity
+zejména profilové sondy typu Odyssey a PR2, instalované v bodech zvolených s
+ohledem na geologické poměry, typ pokryvu, logistickou dostupnost a vazbu na
+monitorované vrty. Podrobný popis instalace a provozních zkušeností na
+lokalitě Uhelná je uveden v následující kapitole.
+
+Pro potřeby výpočtu nejsou rozhodující jen samotné hodnoty vlhkosti, ale i
+jejich jednoznačné svázání s lokalitou, hloubkovou úrovní a časem měření.
+Datový tok proto nese vedle hlavní veličiny také teplotu čidel, identifikaci
+sondy, typ sondy, GPS polohu a stav stanoviště. Tím je možné poškozené nebo
+dočasně nedůvěryhodné sondy z automatického zpracování vyřadit, aniž by se
+porušila konzistence celé časové řady. Z hlediska architektury systému tak síť
+profilových měření není pouhým zdrojem vstupních dat, ale přímo měřicí vrstvou
+pro asimilaci stavu povrchového modelu.
 
 % \begin{figure}[htb]
 %     \centering
@@ -582,13 +594,34 @@ dokumentaci.
 % AGENT: popsat princip xarray, formátu zarr,  nástroje zarr-fuse a schémat
 % AGENT: popsat jaké schémata v SW co obsahují (viz. adresář HLAVO s linkem na 
 % aktuální projekt.
-Zde bude popsán sběr dat z veřejných zdrojů a jejich role pro výpočet
-evapotranspirace a povrchového modelu.
+Datová vrstva byla v projektu navržena tak, aby oddělila pořizování,
+kontrolu, ukládání a zpřístupnění dat od vlastních numerických výpočtů.
+Automaticky jsou stahována zejména meteorologická data z veřejných zdrojů,
+včetně bodových a mřížových předpovědí, zatímco terénní měření profilů a
+hladin jsou do systému doplňována dávkově. Tato vrstva je implementována nad
+knihovnou \texttt{zarr-fuse}, která převádí heterogenní vstupy do jednotných
+vícerozměrných struktur \texttt{xarray} a ukládá je ve formátu Zarr
+\cite{Xarray_HoyerHamman2017,ZarrPython_Zenodo2025,HLAVO_GitHub}. Volba formátu
+Zarr je důležitá proto, že umožňuje rozumně pracovat s dlouhými časovými řadami
+i s prostorově závislými veličinami, a to včetně paralelního čtení a zápisu.
 
-Zde bude vysvětlena role datových schémat, knihovny \texttt{zarr-fuse},
-využití \texttt{xarray} a formátu ZARR
-\cite{Xarray_HoyerHamman2017,ZarrPython_Zenodo2025}. Pro detailní technické
-informace bude možné odkázat na repozitář HLAVO \cite{HLAVO_GitHub}.
+Klíčovou roli zde hrají datová schémata definovaná v YAML souborech. Tato
+schémata nepopisují jen názvy proměnných, ale i jejich jednotky, souřadnice,
+časový krok, povolené hodnoty a vazbu na původní zdroj. Pro měření profilů je
+takto definován například dataset \texttt{profiles.zarr} s hlavními souřadnicemi
+\texttt{date\_time}, \texttt{site\_id} a \texttt{depth\_level}; mezi hlavní
+proměnné patří \texttt{moisture}, \texttt{permeability}, \texttt{T\_sensor} a
+\texttt{T\_probe}. Analogicky jsou připravena schémata pro meteorologické
+vstupy, vrty a simulace, kde se ukládají například predikované hladiny ve
+vrtech, tlakové výšky na rozhraní modelů nebo infiltrační rychlosti. Jednotná
+schémata umožňují, aby stejná data obsloužila výpočet, archivaci i webovou
+vizualizaci bez ručního převádění mezi různými formáty.
+
+Praktickým důsledkem tohoto řešení je, že numerické modely již nepracují přímo
+s původními exporty z čidel nebo se staženými soubory od poskytovatelů počasí,
+ale vždy s interně normalizovanými datovými sadami. To zvyšuje opakovatelnost
+výpočtů, usnadňuje kalibraci a dovoluje postupně rozšiřovat systém o další
+lokality a další datové zdroje bez zásahu do samotného modelového jádra.
 
 \begin{figure}[htb]
     \centering
@@ -610,11 +643,132 @@ informace bude možné odkázat na repozitář HLAVO \cite{HLAVO_GitHub}.
 % AGENT: Popsat povrchový model kombinovaný s Unscented Kalmán filtrem.
 % AGENT: Popsat použité sekvenční sdružení
 % AGENT: Popsat kalibraci pomocí genetického algoritmu a cross-validaci na dlouhé časové řady hladin ve vrtech.
+Povrchová část systému vychází z fyzikálního popisu proudění vody ve variably
+saturovaném prostředí. Základní rovnicí je Richardsova rovnice, kterou lze v
+tlakové formulaci psát ve tvaru
+\[
+  C(h)\frac{\partial h}{\partial t}
+  =
+  \div\left(K(h)\grad(h+z)\right),
+\]
+kde $h$ je tlaková výška, $C(h)$ kapacitní člen a $K(h)$ hydraulická vodivost
+závislá na nasycení \cite{Farthing_Ogden_2017}. Materiálové vztahy jsou v
+systému zadávány pomocí van Genuchtenova typu parametrizace, například pro
+retenční křivku
+\[
+  \theta(h)=\theta_r+(\theta_s-\theta_r)\left(1+(\alpha \abs{h})^n\right)^{-m},
+  \qquad
+  m=1-\frac{1}{n},
+\]
+pro nenasycený stav. Tento popis umožňuje převádět meteorologické buzení a
+vlastnosti půdy na časový průběh vlhkosti a na tok vody do hlubší části
+systému.
 
+V implementaci HLAVO je tato úloha řešena nad simulátorem ParFlow
+\cite{ParFlow_MaxwellCondonKollet2015}. Pro jednotlivá stanoviště je uvažován
+jednorozměrný vertikální sloupec s vrstevnatými parametry půdy. Horní okrajová
+podmínka je zadávána jako tok odvozený od srážek a evapotranspirace, spodní
+okrajová podmínka vychází z tlakové výšky poskytované hlubokým modelem. Pro
+výpočet evapotranspirace jsou v repozitáři připraveny dvě úrovně složitosti:
+jednodušší fyzikálně zdůvodněný model Priestleyho a Taylora a detailnější vazba
+na Community Land Model (CLM), který dovoluje pracovat i s radiací, vegetací a
+dalšími meteorologickými veličinami \cite{Priestley_Assessment_1972,CLM5_Lawrence2019}.
 
-Zde bude popsáno propojení Richardsova modelu, meteorologických vstupů a
-asimilace měření vlhkosti. Vhodné je zachovat věcnou úroveň podobnou zprávě
-za rok 2025.
+Protože samotný procesní model nedokáže bez korekce spolehlivě vystihnout
+neznámé vlastnosti půdy, lokální heterogenitu a chyby meteorologických vstupů,
+je povrchový model zabalen do Unscented Kalmánova filtru. Ten po každém kroku
+kombinuje modelovou predikci s naměřeným profilem vlhkosti a opravuje stav
+modelu tak, aby další simulace vycházela z realistického rozložení vody v
+půdě \cite{Evensen2003,Camporese2009}. Praktické zkušenosti z vývoje ukázaly,
+že je vhodné oddělit krátkodobou asimilaci stavu od dlouhodobé kalibrace
+parametrů. Parametry materiálů a hlubokého modelu jsou proto laděny na delších
+časových intervalech pomocí evoluční optimalizace s průběžnou křížovou
+validací vůči časovým řadám hladin ve vrtech, zatímco Kalmánův filtr slouží
+především k průběžné korekci okamžitého stavu systému.
+
+V případě HLAVO nepracuje UKF s redukovaným empirickým stavem, ale přímo se
+stavem 1D sloupce povrchového modelu. Stav je tvořen diskrétním profilem
+tlakových výšek v jednotlivých buňkách a malou sadou materiálových parametrů,
+které určují retenční a vodivostní vlastnosti půdy. V aktuálně používané
+integrované konfiguraci je vedle tlakových výšek standardně asimilována
+především efektivní nasycená hydraulická vodivost $K_s$; implementace je však
+připravena i pro rozšíření o další van Genuchtenovy parametry nebo o kalibrační
+koeficienty navázané na jednotlivé hloubky. Měřicí vektor je tvořen vlhkostmi v
+hloubkách, kde jsou na daném stanovišti umístěna čidla.
+
+Pro další výklad stačí velmi stručné abstraktní schéma UKF 
+\includegraphics[width=\textwidth]{fig/Basic_concept_of_Kalman_filtering.pdf}
+\cite{Wikipedia_UKF}.
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \item Z aktuálního odhadu $\hat{\vc x}_{k-1}$ a kovariance $\tn P_{k-1}$ se
+  vytvoří sigma body
+  \[
+    \vc\chi^{(0)}_{k-1}=\hat{\vc x}_{k-1},\qquad
+    \vc\chi^{(i)}_{k-1}=\hat{\vc x}_{k-1}\pm
+    \left(\sqrt{(n+\lambda)\tn P_{k-1}}\right)_i .
+  \]
+  \item Sigma body se propagují nelineárním modelem
+  \[
+    \vc\chi^{(i)-}_{k}=f\!\left(\vc\chi^{(i)}_{k-1},\vc u_k\right),
+  \]
+  a z nich se složí predikovaný stav a jeho kovariance
+  \[
+    \hat{\vc x}^{-}_{k}=\sum_i W_i^{(m)}\vc\chi^{(i)-}_{k},\qquad
+    \tn P^{-}_{k}=\sum_i W_i^{(c)}
+    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)
+    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)^\top+\tn Q.
+  \]
+  \item Predikované sigma body se převedou měřicí funkcí
+  \[
+    \vc\gamma^{(i)}_{k}=h\!\left(\vc\chi^{(i)-}_{k}\right),
+  \]
+  čímž dostaneme predikované měření, jeho kovarianci a křížovou kovarianci
+  \[
+    \hat{\vc y}_{k}=\sum_i W_i^{(m)}\vc\gamma^{(i)}_{k},\qquad
+    \tn S_k=\sum_i W_i^{(c)}
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)^\top+\tn R,
+  \]
+  \[
+    \tn P^{xy}_k=\sum_i W_i^{(c)}
+    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)^\top.
+  \]
+  \item Korekce se provede pomocí Kalmánova zisku
+  \[
+    \tn K_k=\tn P^{xy}_k \tn S_k^{-1},
+    \qquad
+    \hat{\vc x}_{k}=\hat{\vc x}^{-}_{k}+\tn K_k\left(\vc y_k-\hat{\vc y}_{k}\right),
+    \qquad
+    \tn P_k=\tn P^{-}_{k}-\tn K_k \tn S_k \tn K_k^\top.
+  \]
+\end{enumerate}
+
+V našem případě je nejdůležitější, jak jsou obsazeny abstraktní prvky
+$f$, $\tn Q$, $\tn R$ a v menší míře i počáteční kovariance $\tn P_0$. Funkce
+$f$ není zjednodušený regresní krok, ale přímo dopředná simulace 1D modelu
+ParFlow se zadaným meteorologickým buzením a se spodní okrajovou podmínkou
+přebíranou z hlubokého modelu. Měřicí funkce $h$ převádí tento stav na vlhkosti
+v hloubkách čidel pomocí interpolace a materiálových vztahů.
+
+Matice procesního šumu $\tn Q$ vyjadřuje nejistotu modelové dynamiky mezi dvěma
+měřeními. V implementaci HLAVO je skládána blokově po jednotlivých složkách
+stavu, tedy samostatně pro tlakové pole a samostatně pro odhadované materiálové
+parametry. Právě volba $\tn Q$ určuje, nakolik filtr připouští, že se model od
+reality odchýlí i bez opory v novém měření.
+
+Matice měřicího šumu $\tn R$ reprezentuje nejistotu vlhkostních měření. Při
+běhu s reálnými daty je v současném kódu odvozena z empirického rozptylu
+načtených měření, zatímco v syntetických testech ze známého rozdílu mezi
+bezchybným a zašuměným měřicím vektorem. Volba $\tn R$ tak určuje, jak silně
+filtr věří sondám oproti procesnímu modelu.
+
+Počáteční kovariance $\tn P_0$ je pro stabilitu prvních kroků důležitá, ale při
+delším běhu je její vliv postupně překryt opakovanými predikčními a korekčními
+kroky. Z praktického hlediska je proto v projektu HLAVO podstatnější realistická
+volba $\tn Q$ a $\tn R$ než detailní ladění $\tn P_0$.
 
 % \begin{figure}[htb]
 %     \centering
@@ -625,9 +779,26 @@ za rok 2025.
 
 \subsubsection{Hluboký model vadózní zóny}
 
-Zde bude popsána konstrukce hlubokého modelu z GIS podkladů a jeho role v
-predikci hladin podzemní vody. Pro základní rámec lze odkázat na MODFLOW 6
-\cite{MODFLOW6_Framework_Hughes2017}.
+Hluboký model představuje druhou, prostorově výrazně rozsáhlejší úroveň
+predikčního systému. Jeho úkolem není detailní popis procesů v prvních metrech
+pod povrchem, ale převod dlouhodoběji působící infiltrace na odezvu hladin
+podzemní vody v hlubších kolektorech. Model je sestavován z GIS podkladů
+dodaných pro lokalitu Uhelná: z vrstev geologických rozhraní, povrchové
+topografie, hranic modelované oblasti a poloh monitorovaných objektů. Skripty
+v repozitáři HLAVO tyto podklady převádějí do pravidelného výpočetního rastru,
+přiřazují jednotlivým blokům materiálové třídy a zapisují výslednou úlohu do
+vstupů pro MODFLOW~6 \cite{MODFLOW6_Framework_Hughes2017,HLAVO_GitHub}.
+
+Pracovní postup je rozdělen do několika kroků: sestavení gridu a vrstev,
+doplnění hydraulických parametrů, samotný běh modelu a následná vizualizace.
+Toto oddělení je záměrné, protože geometrie modelu se mění zřídka, zatímco
+materiálové parametry a kalibrační scénáře se během vývoje mění často.
+Hluboký model může být provozován ve stacionárním i dlouhodobém nestacionárním
+režimu. Na horní hranici přebírá dotaci z povrchových modelů, naopak zpět
+poskytuje tlakové výšky nebo reprezentativní odezvu pro spodní okrajovou
+podmínku mělkých 1D modelů. Tím vzniká sekvenčně sdružené schéma, v němž
+povrchová a hluboká část používají odlišné numerické nástroje, ale sdílejí
+fyzikálně významné veličiny na společném rozhraní.
 
 \begin{figure}[htb]
     \centering
@@ -641,10 +812,36 @@ predikci hladin podzemní vody. Pro základní rámec lze odkázat na MODFLOW 6
 % AGENT: dokumentace příkazu 'hlavo' a jeho podpříkazů
 % AGENT: příklad spouštění na clustru
 % AGENT: dashboard
+Repozitář HLAVO je členěn do několika logických vrstev: \texttt{ingress} pro
+sběr a předzpracování dat, \texttt{soil\_parflow} a \texttt{kalman} pro
+povrchový model s asimilací, \texttt{deep\_model} pro sestavení a běh hlubokého
+modelu a \texttt{dashboard} pro webovou vizualizaci. Nad těmito moduly je
+zavedeno jednotné příkazové rozhraní \texttt{hlavo}. Z pohledu uživatele jsou
+nejdůležitější příkazy \verb|hlavo build_model CONFIG -w WORKDIR| pro sestavení
+3D modelu z konfiguračního souboru, \verb|hlavo simulate CONFIG -w WORKDIR| pro
+spuštění sdružené simulace a \verb|hlavo dataset| pro kontrolu a inspekci
+uložených Zarr datasetů. Pro opakovatelné dávkové běhy jsou v repozitáři
+připraveny i obalové skripty v adresáři \texttt{runs/} a PBS skripty pro
+spouštění na clusteru.
 
-Zde bude popsáno, jak na sebe navazují měření, datové úložiště, povrchový
-model a hluboký model. Důležité je oddělit to, co je plně funkční, od toho,
-co je ve stavu prototypu nebo částečné integrace.
+Z provozního hlediska je důležité rozlišit mezi částmi, které jsou již
+prakticky použitelné, a částmi, které jsou stále ve stavu prototypu. Za
+funkční a opakovatelně použitelné lze považovat zejména datovou infrastrukturu
+založenou na \texttt{zarr-fuse}, import profilových a meteorologických dat,
+sestavení hlubokého modelu z GIS podkladů a jeho samostatné výpočty. Naopak
+plně automatizované sdružení více 1D stanovišť s hlubokým modelem, stejně jako
+produkční webová prezentace všech výsledků v jediném rozhraní, zůstává ve
+vývojové fázi. Současná implementace již obsahuje funkční integrační vrstvu a
+ukázkový dashboard, ale jejich role v této etapě projektu je především
+ověřovací.
+
+Dashboard využívá stejné datové sklady jako výpočetní část systému a zobrazuje
+profilová měření, vrty i meteorologické vstupy nad jednotným mapovým podkladem.
+Tím odpadá potřeba vytvářet zvláštní exporty jen pro kontrolu dat. Uživatel má
+možnost rychle porovnat prostorové rozmístění stanic, časové řady měření i
+vybrané simulační veličiny. Tato vrstva je důležitá nejen pro interpretaci
+výsledků, ale i pro provozní kontrolu kvality vstupních dat a pro budoucí
+nasazení systému mimo hlavní testovací lokalitu.
 
 \begin{figure}[htb]
     \centering
