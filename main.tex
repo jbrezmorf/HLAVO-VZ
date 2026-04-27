@@ -515,18 +515,17 @@ projektu HLAVO obecnější význam přesahující jedinou studovanou lokalitu.
 \section{Rešerše podobných řešení}
 \label{sec:reserse}
 Pro projekt HLAVO jsou relevantní čtyři oblasti výzkumu: provozní měření
-půdní vlhkosti v terénu, fyzikální modelování infiltrace ve vadózní zóně,
-asimilace dat do procesních modelů a komplexní interpretace hluboké vadózní zóny a její dotace. Základní kontext poskytují startší přehledové práce (\cite{Lekshmi2014,Cerny2009,Farthing_Ogden_2017}). V této kapitole chceme poskytnout aktualizaci rešerše provedené v průběhu tvorby přihlášky projektu.
+půdní vlhkosti v~terénu, fyzikální modelování infiltrace ve vadózní zóně,
+asimilace dat do procesních modelů a komplexní interpretace hluboké vadózní zóny a její dotace. Základní kontext poskytují starší přehledové práce \parencite{Lekshmi2014,Cerny2009,Farthing_Ogden_2017}. V této kapitole chceme poskytnout aktualizaci rešerše provedené v průběhu tvorby přihlášky projektu.
 
 V oblasti monitoringu půdní vlhkosti se novější publikace méně soustředí na
-samotný principy senzorů a více na kvalitu instalace, kalibraci, reprezentativnost měření a kombinaci různých prostorových měřítek. Praktický význam má zejména standardizace instalace a provozu profilových čidel v nenarušené půdě \cite{CaldwellEtAl2022}. 
-Zárověň se objevují nové metody pro monitoring vlhkosti na větších oblastech. Například snímání pomocí neutronů indukovaných kosmickým zářením (CRNS)
+samotný principy senzorů a více na kvalitu instalace, kalibraci, reprezentativnost měření a kombinaci různých prostorových měřítek. Praktický význam má zejména standardizace instalace a provozu profilových čidel v nenarušené půdě \parencite{CaldwellEtAl2022}. 
+Zárověň se objevují nové metody pro monitoring vlhkosti na větších oblastech. Například snímání pomocí neutronů indukovaných kosmickým zářením (CRNS), viz
 \cite{RascheEtAl2024CRNS}, případně nové distribuované postupy založené na
 optických vláknech a nepřímém snímání dynamiky vlhkosti ve vadózní zóně
-\cite{ShenEtAl2024Fiber} pomocí vlivu na seismiku. 
+\parencite{ShenEtAl2024Fiber} pomocí vlivu na seismiku. 
 
-Numerické modely zůstávají založeny na Richardsově rovnici a na explicitním popisu proudění ve variably saturovaném
-prostředí. Vedle klasických numerických přístupů se však nově datově orientované modely založené na hlubokém učení. \textcite{Bandai_Ghezzehei_2021} ukazují, že fyzkiálně informované neuronové
+Numerické modely zůstávají založeny na Richardsově rovnici a na explicitním popisu proudění v prostředí s proměnlivou saturací (vadózní zóna). Vedle klasických numerických přístupů se však nově datově orientované modely založené na hlubokém učení. \textcite{Bandai_Ghezzehei_2021} ukazují, že fyzikálně informované neuronové
 sítě lze použít k odhadu konstitutivních vztahů i toků přímo z časových řad
 vlhkosti, aniž by se rezignovalo na fyzikální konzistentnost.
 \textcite{LanEtAl2024PIDL} rekonstruují infiltrační chování z omezených dat
@@ -536,10 +535,10 @@ modelů, které propojují procesně založené rovnice s metodami strojového u
 Použití vhodné neuronové sítě by významě urychlilo výpočetně náročné řešení infiltrace s asimilací pomocí Kalmánova filtru.
 
 Ensemble Kalman filter a jeho hydrologické varianty
-zůstávají základním rámcem pro asimilaci s průběžným měřením \cite{Evensen2003}, přičemž starší aplikace již
+zůstávají základním rámcem pro asimilaci s průběžným měřením \parencite{Evensen2003}, přičemž starší aplikace již
 ukázaly použitelnost pro procesně založené modely povrchového a podpovrchového
-proudění \cite{Camporese2009,Carlo2018}. Nové publikace asimilaci dále rozšiřují  pro více typů pozorování současně. Například \textcite{LiEtAl2025JointAssimilation}
-ukazují, že společná asimilace plošných dat o půdní vlhkosti z CRNS a
+proudění \parencite{Camporese2009,Carlo2018}. Nové publikace asimilaci dále rozšiřují  pro více typů pozorování současně. Například \textcite{LiEtAl2025JointAssimilation}
+ukazují, že společná asimilace plošných dat o půdní vlhkosti z~CRNS a
 hladin podzemní vody zlepšuje odhad zásob vody i rozdělení toků v systému.
 
 Samostatnou linií je interpretace hluboké vadózní zóny a odhadu dotace
@@ -547,19 +546,19 @@ podzemních vod. Zde recentní práce zdůrazňují, že mezi povrchovým impulz
 odezvou zvodně může působit významná retence, zpoždění a nelinearita, kterou
 nelze dostatečně vystihnout jednoduchým převodem srážka--infiltrace. Přehled
 \textcite{HeEtAl2024DeepVadoseReview} shrnuje, že v hluboké vadózní zóně
-rozhoduje vrstevnatost, preferenční proudění i sezónní stav zásob. Studie \cite{SchueblEtAl2023} ukazuje, že z časových řad půdní vlhkosti lze odhadovat
+rozhoduje vrstevnatost, preferenční proudění i sezónní stav zásob. Studie \textcite{SchueblEtAl2023} ukazuje, že z~časových řad půdní vlhkosti lze odhadovat
 toky ve vadózní zóně, ale jen při dobré znalosti lokální struktury prostředí.
 Heterogenita může zásadně změnit efektivitu řízené i
-přirozené dotace \cite{ZhouEtAl2023VadoseMAR}; a významnou roli hraje také
+přirozené dotace \parencite{ZhouEtAl2023VadoseMAR}; a významnou roli hraje také
 hluboké akumulační zpoždění mezi infiltrací a skutečnou dotací zvodně
-\cite{LiEtAl2023LoessRecharge,BenitezNelsonEtAl2025}.
+\parencite{LiEtAl2023LoessRecharge,BenitezNelsonEtAl2025}.
 
 Nové modely, zejména uplatnění neuronových sítí, lze relativně snadno zakomponovat do existujího výpočetního procesu. Naproti tomu aplikace nových snímacích metod by vyžadovala podstatné další investice. I ve světle nové rešerše je integrace postupů realizovaná v rámci projektu HLAVO inovativní a 
-v případě ověření během následujících let může být releventní pro predikci hladin podzemních vod.  
+v případě ověření během následujících let může být relevantní pro predikci hladin podzemních vod.  
 
 \section{Predikční systém hladiny podzemní vody}
 Tato sekce popisuje výsledný systém pro predikci hladin podzemní vody. 
-Stručně představíme metodiku sběru dat z monitorovací sítě profilů půdní vlhkosti a popíšeme sběr a organizaci všech vstupních a výstupních dat softwarového řešení. Dále poskytneme teoretickou formulaci simulovaných procesů a schéma jejich implementace. Nakonec poskytneme přehled příkazů pro spoučtění simulací a webovou aplikaci pro vizualizaci vstupních a výstupních časových řad.
+Stručně představíme metodiku sběru dat z monitorovací sítě profilů půdní vlhkosti a popíšeme sběr a organizaci všech vstupních a výstupních dat softwarového řešení. Dále poskytneme teoretickou formulaci simulovaných procesů a schéma jejich implementace. Nakonec poskytneme přehled příkazů pro spouštění simulací a webovou aplikaci pro vizualizaci vstupních a výstupních časových řad.
 
 \subsection{Síť měření vlhkosti}
 % AGENT: shrnout podrobný popis z následující kapitoly, pro podrobnosti odkázat tam.
@@ -601,7 +600,7 @@ včetně bodových a mřížových předpovědí, zatímco terénní měření p
 hladin jsou do systému doplňována dávkově. Tato vrstva je implementována nad
 knihovnou \texttt{zarr-fuse}, která převádí heterogenní vstupy do jednotných
 vícerozměrných struktur \texttt{xarray} a ukládá je ve formátu Zarr
-\cite{Xarray_HoyerHamman2017,ZarrPython_Zenodo2025,HLAVO_GitHub}. Volba formátu
+\parencite{Xarray_HoyerHamman2017,ZarrPython_Zenodo2025,HLAVO_GitHub}. Volba formátu
 Zarr je důležitá proto, že umožňuje rozumně pracovat s dlouhými časovými řadami
 i s prostorově závislými veličinami, a to včetně paralelního čtení a zápisu.
 
@@ -643,8 +642,7 @@ lokality a další datové zdroje bez zásahu do samotného modelového jádra.
 % AGENT: Popsat povrchový model kombinovaný s Unscented Kalmán filtrem.
 % AGENT: Popsat použité sekvenční sdružení
 % AGENT: Popsat kalibraci pomocí genetického algoritmu a cross-validaci na dlouhé časové řady hladin ve vrtech.
-Povrchová část systému vychází z fyzikálního popisu proudění vody ve variably
-saturovaném prostředí. Základní rovnicí je Richardsova rovnice, kterou lze v
+Povrchová část systému vychází z fyzikálního popisu proudění vody v prostředí s proměnlivou saturací. Základní rovnicí je Richardsova rovnice, kterou lze v
 tlakové formulaci psát ve tvaru
 \[
   C(h)\frac{\partial h}{\partial t}
@@ -652,112 +650,112 @@ tlakové formulaci psát ve tvaru
   \div\left(K(h)\grad(h+z)\right),
 \]
 kde $h$ je tlaková výška, $C(h)$ kapacitní člen a $K(h)$ hydraulická vodivost
-závislá na nasycení \cite{Farthing_Ogden_2017}. Materiálové vztahy jsou v
-systému zadávány pomocí van Genuchtenova typu parametrizace, například pro
-retenční křivku
+závislá na nasycení \parencite{Farthing_Ogden_2017}. Materiálové vztahy jsou v
+systému zadávány pomocí van Genuchtenova typu parametrizace s retenční křivkou:
 \[
   \theta(h)=\theta_r+(\theta_s-\theta_r)\left(1+(\alpha \abs{h})^n\right)^{-m},
   \qquad
   m=1-\frac{1}{n},
 \]
-pro nenasycený stav. Tento popis umožňuje převádět meteorologické buzení a
+pro nenasycený stav. Tento popis umožňuje převádět meteorologické vstupy a
 vlastnosti půdy na časový průběh vlhkosti a na tok vody do hlubší části
 systému.
 
-V implementaci HLAVO je tato úloha řešena nad simulátorem ParFlow
-\cite{ParFlow_MaxwellCondonKollet2015}. Pro jednotlivá stanoviště je uvažován
+V implementaci HLAVO je tato úloha řešena pomocí simulátoru ParFlow
+\parencite{ParFlow_MaxwellCondonKollet2015}. Pro jednotlivá stanoviště je uvažován
 jednorozměrný vertikální sloupec s vrstevnatými parametry půdy. Horní okrajová
 podmínka je zadávána jako tok odvozený od srážek a evapotranspirace, spodní
 okrajová podmínka vychází z tlakové výšky poskytované hlubokým modelem. Pro
 výpočet evapotranspirace jsou v repozitáři připraveny dvě úrovně složitosti:
 jednodušší fyzikálně zdůvodněný model Priestleyho a Taylora a detailnější vazba
 na Community Land Model (CLM), který dovoluje pracovat i s radiací, vegetací a
-dalšími meteorologickými veličinami \cite{Priestley_Assessment_1972,CLM5_Lawrence2019}.
+dalšími meteorologickými veličinami \parencite{Priestley_Assessment_1972,CLM5_Lawrence2019}.
 
 Protože samotný procesní model nedokáže bez korekce spolehlivě vystihnout
 neznámé vlastnosti půdy, lokální heterogenitu a chyby meteorologických vstupů,
-je povrchový model zabalen do Unscented Kalmánova filtru. Ten po každém kroku
+je povrchový model zabalen do Unscented Kalmánova filtru (UKF, \cite{Wikipedia_UKF}). Ten po každém kroku
 kombinuje modelovou predikci s naměřeným profilem vlhkosti a opravuje stav
 modelu tak, aby další simulace vycházela z realistického rozložení vody v
-půdě \cite{Evensen2003,Camporese2009}. Praktické zkušenosti z vývoje ukázaly,
+půdě \parencite{Evensen2003,Camporese2009}. Praktické zkušenosti z vývoje ukázaly,
 že je vhodné oddělit krátkodobou asimilaci stavu od dlouhodobé kalibrace
 parametrů. Parametry materiálů a hlubokého modelu jsou proto laděny na delších
-časových intervalech pomocí evoluční optimalizace s průběžnou křížovou
+časových intervalech pomocí algoritmů diferenciální evoluce s průběžnou křížovou
 validací vůči časovým řadám hladin ve vrtech, zatímco Kalmánův filtr slouží
 především k průběžné korekci okamžitého stavu systému.
 
 V případě HLAVO nepracuje UKF s redukovaným empirickým stavem, ale přímo se
 stavem 1D sloupce povrchového modelu. Stav je tvořen diskrétním profilem
-tlakových výšek v jednotlivých buňkách a malou sadou materiálových parametrů,
-které určují retenční a vodivostní vlastnosti půdy. V aktuálně používané
-integrované konfiguraci je vedle tlakových výšek standardně asimilována
-především efektivní nasycená hydraulická vodivost $K_s$; implementace je však
-připravena i pro rozšíření o další van Genuchtenovy parametry nebo o kalibrační
-koeficienty navázané na jednotlivé hloubky. Měřicí vektor je tvořen vlhkostmi v
+tlakových výšek v jednotlivých buňkách a případně podmnožinou materiálových parametrů.
+V aktuálně používané verzi se asimilace materiálových parametrů neaplikuje a parametry jsou  určeny kalibrací a v průběhu UKF se nemění. Měřicí vektor je tvořen vlhkostmi v
 hloubkách, kde jsou na daném stanovišti umístěna čidla.
 
-Pro další výklad stačí velmi stručné abstraktní schéma UKF 
+Schéma asimilace pomocí UKF je na Obr. \ref{fig:UKF_schema}.
+
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{fig/Basic_concept_of_Kalman_filtering.pdf}
-\cite{Wikipedia_UKF}.
+\caption{Abstraktní schéma UKF (zdroj \cite{Wikipedia_UKF}).}
+\label{fig:UKF_schema}
+\end{figure}
+
 \begin{enumerate}
   \setlength{\itemsep}{0pt}
   \setlength{\parskip}{0pt}
-  \item Z aktuálního odhadu $\hat{\vc x}_{k-1}$ a kovariance $\tn P_{k-1}$ se
-  vytvoří sigma body
+  \item Z aktuálního odhadu stavu $\vc x_{k-1}$ a kovariance $\tn P_{k-1}$ se
+  vytvoří tzv. sigma body
   \[
-    \vc\chi^{(0)}_{k-1}=\hat{\vc x}_{k-1},\qquad
-    \vc\chi^{(i)}_{k-1}=\hat{\vc x}_{k-1}\pm
+    \vc\chi^{(0)}_{k-1}={\vc x}_{k-1},\qquad
+    \vc\chi^{(i)}_{k-1}={\vc x}_{k-1}\pm
     \left(\sqrt{(n+\lambda)\tn P_{k-1}}\right)_i .
   \]
-  \item Sigma body se propagují nelineárním modelem
+  \item Sigma body se propagují nelineárním modelem s použitím časově závislých vstupů (např. počasí) $\vc u_k$:
   \[
-    \vc\chi^{(i)-}_{k}=f\!\left(\vc\chi^{(i)}_{k-1},\vc u_k\right),
+    \vc z^{(i)}_{k}=f\!\left(\vc\chi^{(i)}_{k-1},\vc u_k\right),
   \]
-  a z nich se složí predikovaný stav a jeho kovariance
+  Z predikcí $\vc z_k$ stavů v dalším časovém kroku se složí predikovaná střední hodnota a kovariance stavů:
   \[
-    \hat{\vc x}^{-}_{k}=\sum_i W_i^{(m)}\vc\chi^{(i)-}_{k},\qquad
-    \tn P^{-}_{k}=\sum_i W_i^{(c)}
-    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)
-    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)^\top+\tn Q.
+    \hat{\vc x}_{k}=\sum_i W_i^{(m)}\vc z^{(i)}_{k},\qquad
+    \hat{\tn P}_{k}=\sum_i W_i^{(c)}
+    \left(\vc z^{(i)}_{k}-\hat{\vc x}_{k}\right)
+    \left(\vc z^{(i)}_{k}-\hat{\vc x}_{k}\right)^\top+\tn Q.
   \]
-  \item Predikované sigma body se převedou měřicí funkcí
+  Zde $\tn W^(m)$ a $\tn W^(c)$ jsou váhy sigma bodů (řada teoretických konceptů) a $\tn Q$ je matice procesního šumu, která je vstupem algoritmu a popisuje apriorní předpoklad o shodě modelu se skutečným budoucím stavem.
+  \item Z predikovaných sigma bodů se měřicí funkcí $h$ predikují výsledeky měření
   \[
-    \vc\gamma^{(i)}_{k}=h\!\left(\vc\chi^{(i)-}_{k}\right),
+    \vc\gamma^{(i)}_{k}=h\!\left(\vc z^{(i)}_{k}\right).
   \]
-  čímž dostaneme predikované měření, jeho kovarianci a křížovou kovarianci
+  a z nich odhad střední hodnoty měření, kovariance měření a tzv. křížové kovariance:
   \[
-    \hat{\vc y}_{k}=\sum_i W_i^{(m)}\vc\gamma^{(i)}_{k},\qquad
+    \hat{\vc \gamma}_{k}=\sum_i W_i^{(m)}\vc\gamma^{(i)}_{k},\qquad
     \tn S_k=\sum_i W_i^{(c)}
-    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)
-    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)^\top+\tn R,
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc \gamma}_{k}\right)
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc \gamma}_{k}\right)^\top+\tn R,
   \]
   \[
     \tn P^{xy}_k=\sum_i W_i^{(c)}
-    \left(\vc\chi^{(i)-}_{k}-\hat{\vc x}^{-}_{k}\right)
-    \left(\vc\gamma^{(i)}_{k}-\hat{\vc y}_{k}\right)^\top.
+    \left(\vc z^{(i)}_{k}-\hat{\vc x}_{k}\right)
+    \left(\vc\gamma^{(i)}_{k}-\hat{\vc \gamma}_{k}\right)^\top.
   \]
-  \item Korekce se provede pomocí Kalmánova zisku
+  Zde je vstupem kovarianční matice šumu měření $\tn R$.
+  \item Posledním krokem je aktualizace stavu pocházejícího z pouze z modelu pomocí informace z měření $\vc y_k$ pomocí tzv. Kalmánova zisku (Kalman gain):
   \[
     \tn K_k=\tn P^{xy}_k \tn S_k^{-1},
     \qquad
-    \hat{\vc x}_{k}=\hat{\vc x}^{-}_{k}+\tn K_k\left(\vc y_k-\hat{\vc y}_{k}\right),
+    {\vc x}_{k}=\hat{\vc x}_{k}+\tn K_k\left(\vc y_k-\hat{\vc \gamma}_{k}\right),
     \qquad
-    \tn P_k=\tn P^{-}_{k}-\tn K_k \tn S_k \tn K_k^\top.
+    \tn P_k=\hat{\tn P}_{k}-\tn K_k \tn S_k \tn K_k^\top.
   \]
 \end{enumerate}
 
 V našem případě je nejdůležitější, jak jsou obsazeny abstraktní prvky
-$f$, $\tn Q$, $\tn R$ a v menší míře i počáteční kovariance $\tn P_0$. Funkce
-$f$ není zjednodušený regresní krok, ale přímo dopředná simulace 1D modelu
-ParFlow se zadaným meteorologickým buzením a se spodní okrajovou podmínkou
-přebíranou z hlubokého modelu. Měřicí funkce $h$ převádí tento stav na vlhkosti
-v hloubkách čidel pomocí interpolace a materiálových vztahů.
+$f$, $h$, $\tn Q$, $\tn R$ a v menší míře i počáteční kovariance $\tn P_0$. Funkce
+predikce stavu $f$ a predikce měření $h$ jsou vyhodnocovány najednou pomocí 1D modelu
+ParFlow se zadanými časově závislými meteorologickými vstupy a spodní okrajovou podmínkou danou hlubokým modelem. Pokud je prováděna asimilace i pro materiálové prametry je pro jejich predikci použita identita.
 
 Matice procesního šumu $\tn Q$ vyjadřuje nejistotu modelové dynamiky mezi dvěma
-měřeními. V implementaci HLAVO je skládána blokově po jednotlivých složkách
+měřeními. V~implementaci HLAVO je skládána blokově po jednotlivých složkách
 stavu, tedy samostatně pro tlakové pole a samostatně pro odhadované materiálové
-parametry. Právě volba $\tn Q$ určuje, nakolik filtr připouští, že se model od
-reality odchýlí i bez opory v novém měření.
+parametry (pokud je aplikováno). Právě volba $\tn Q$ určuje, nakolik filtr připouští, že se model od reality odchýlí i bez opory v novém měření.
 
 Matice měřicího šumu $\tn R$ reprezentuje nejistotu vlhkostních měření. Při
 běhu s reálnými daty je v současném kódu odvozena z empirického rozptylu
@@ -787,7 +785,7 @@ dodaných pro lokalitu Uhelná: z vrstev geologických rozhraní, povrchové
 topografie, hranic modelované oblasti a poloh monitorovaných objektů. Skripty
 v repozitáři HLAVO tyto podklady převádějí do pravidelného výpočetního rastru,
 přiřazují jednotlivým blokům materiálové třídy a zapisují výslednou úlohu do
-vstupů pro MODFLOW~6 \cite{MODFLOW6_Framework_Hughes2017,HLAVO_GitHub}.
+vstupů pro MODFLOW~6 \parencite{MODFLOW6_Framework_Hughes2017,HLAVO_GitHub}.
 
 Pracovní postup je rozdělen do několika kroků: sestavení gridu a vrstev,
 doplnění hydraulických parametrů, samotný běh modelu a následná vizualizace.
@@ -803,7 +801,7 @@ fyzikálně významné veličiny na společném rozhraní.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.95\linewidth]{fig/layers_large_domain.png}
-    \caption{Pracovní obrázek k hlubokému modelu: vrstvy a rozsah modelované oblasti odvozené z GIS podkladů.}
+    \caption{Ilustrace různých geologických vrstev hlubokého modelu vadózní zóny.}
     \label{fig:deep-model}
 \end{figure}
 
@@ -835,48 +833,40 @@ vývojové fázi. Současná implementace již obsahuje funkční integrační v
 ukázkový dashboard, ale jejich role v této etapě projektu je především
 ověřovací.
 
-Dashboard využívá stejné datové sklady jako výpočetní část systému a zobrazuje
-profilová měření, vrty i meteorologické vstupy nad jednotným mapovým podkladem.
-Tím odpadá potřeba vytvářet zvláštní exporty jen pro kontrolu dat. Uživatel má
+\subsection{Dashboard}
+Dashboard (viz. Obr \ref{fig:dashboard}) je webová aplikace pro prohlížení časových řad. Je napojená na všechna ZARR datová úložiště systému. Aktuální úložiště lze vybrat v levém panelu pomocí "Store name". Níže je stromová struktura vybraného úložiště, kde lze vybrat aktuální uzel stromu, t.j. jeden konkrétní xarray dataset. Jeho proměnné jsou pak zobrazeny v sekci "VARIABLE". Pro vybranou proměnnou se v pravé spodní části zobrazí časový průběh přes celé uložená data, pro jeden měsíc a jeden den v okolí červené vertikální linie. V horní části je v mapce možno vybrat bod měření. 
+
+Uživatel má
 možnost rychle porovnat prostorové rozmístění stanic, časové řady měření i
-vybrané simulační veličiny. Tato vrstva je důležitá nejen pro interpretaci
-výsledků, ale i pro provozní kontrolu kvality vstupních dat a pro budoucí
-nasazení systému mimo hlavní testovací lokalitu.
+vybrané simulované veličiny. Tato vrstva je důležitá nejen pro interpretaci
+výsledků, ale i pro provozní kontrolu kvality vstupních dat. Modulární struktura umožňuje další vývoj zejména směrem k porovnávání více veličin v jednom grafu.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.95\linewidth]{fig/dashboard.png}
-    \caption{Pracovní ukázka vizualizační vrstvy systému HLAVO pro měřená a simulovaná data.}
+    \includegraphics[width=0.95\linewidth]{fig/dashboard_overview_crop.png}
+    \caption{Webová aplikace pro prohlížení časových vstupní a výstupních časových řad-}
     \label{fig:dashboard}
 \end{figure}
 
+\clearpage
+
 \section{Aplikace na lokalitu Uhelná}
 
-Tato sekce bude hlavní případovou studií. Je vhodné ji vystavět tak, aby na
-jednom místě shrnula vstupní data, konfiguraci systému pro lokalitu Uhelná a
-praktické zkušenosti z nasazení.
+V této sekci popíšeme konkrétní aplikace obecného systému popsaného v předchozí sekci na lokalitě Uhelná. Nejprve popíšeme detaily instalace sítě profilového měření vlhkosti, kalibraci sond a metodiku sběru dat. Dále shrneme konkrétní zdroje meteorologických dat a nakonec tvorbu 3D modelu.
 
-\subsection{Meteodata a jejich zdroje}
-
-Zde bude uvedeno, jaké meteorologické zdroje byly použity, jak jsou do
-systému přiváděny a jaké mají časové a věcné pokrytí.
-
-\clearpage
 \subsection{Síť profilových měření}
-
-Plánek kompletní sítě profilových měření je znázorněn na  Obr. \ref{fig:mapa_uhelna_duben_2026}.Instalace probíhala ve dvou fázích. Po pilotním provozu několika sond v~lesíku poblíž obce Uhelná (sondy 1--3) proběhla instalace celé sítě na přelomu roku 2024 a~2025, se zprovozněním v lednu 2025.  Výběr stanovišť  se řídil několika kritérii:
+Plánek kompletní sítě profilových měření je znázorněn na  Obr. \ref{fig:mapa_uhelna_duben_2026}. Instalace probíhala ve dvou fázích. Po pilotním provozu několika sond v~lesíku poblíž obce Uhelná (sondy 1--3) proběhla instalace celé sítě na přelomu roku 2024 a~2025, s plným zprovozněním v lednu 2025.  Celé území je logisticky dobře dostupné, a výběr stanovišť  se řídil těmito kritérii:
 \begin{enumerate}
   \setlength{\itemsep}{0pt}
   \setlength{\parskip}{0pt}
     \item Pozice již existujících hloubkových vrtů ČGS. V ideálním případě byly sondy umístěny do sousedství těchto vrtů.
     \item Pokrytí celého mikro-povodí Uhelná.
-    \item Logistická dostupnost stanovišť.
-    \item Konkrétní pozice sond v rámci konkrétního stanoviště (posun v řádu jednotek či desítek metrů) pak byly v rámci možností voleny tak, aby pokrývaly různé typy vegetace či půdní struktury (viz Obr. \ref{fig:seznam_vrtu_2026}).
+    \item Pozice sond v rámci konkrétního stanoviště (posun o jednotky či desítky m) byly v rámci možností voleny tak, aby pokrývaly různé typy vegetace či půdní struktury (viz Obr. \ref{fig:seznam_vrtu_2026}).
 \end{enumerate}
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{fig/PR/mapa_uhelna_duben_2026.png}
-    \caption{Mapa oblasti s vyznačenými pozicemi profilových sond. Červeně jsou označena stanoviště s poškozenými či zničenými sondami (24 - sekačka; 19, 29 - stavba vodovodu, 20 - vandalismus, 33 - zvěř). Podkladová vrstva použita ze~\cite{SeznamMapy2026}.}
+    \includegraphics[width=0.8\linewidth]{fig/PR/mapa_uhelna_duben_2026.png}
+    \caption{Situační plánek oblasti Uhelná s vyznačenými pozicemi sond. Červeně jsou označeny poničené sondy.}
     \label{fig:mapa_uhelna_duben_2026}
 \end{figure}
 
@@ -895,21 +885,18 @@ Plánek kompletní sítě profilových měření je znázorněn na  Obr. \ref{fi
     \label{fig:instalace_stanoviste_1}
 \end{figure}
 
-\paragraph{Instalace stanovišť}
-Jednotlivé sondy byly instalovány standardním postupem. Do vyvrtané díry potřebné délky byla zasunuta chránička a do ní pak sonda. Postup osazení pro stanoviště 1 je zdokumentován na Obr. \ref{fig:instalace_stanoviste_1}. Instalace do hlinitého či jílovitého podloží probíhaly hladce. Problémy způsobovalo pískové podloží na cca polovině stanovišť, zejména při vrtání, kdy bylo ńutno postupovat obezřetně tak, aby nedošlo ke zborcení stěn vrtu. Na několika stanovištích tak bylo nutno zkusit několik konkrétních pozic vrtů, nežli byla nalezena vhodná pozice. Nadzemní část sondy pak byla opatřena ochrannou plastovou trubkou, většinou též se zelenou maskovací textilií, a~informační cedulkou (Obr. \ref{fig:instalace_stanoviste_1} dole).
+\clearpage
 
+\paragraph{Instalace stanovišť}
+Jednotlivé sondy byly instalovány standardním postupem. Do vyvrtané díry potřebné délky byla zasunuta chránička a do ní pak sonda. Postup osazení pro stanoviště~1 je zdokumentován na Obr. \ref{fig:instalace_stanoviste_1}. Instalace do hlinitého či jílovitého podloží probíhaly hladce. Problémy způsobovalo pískové podloží na cca polovině stanovišť, zejména při vrtání, kdy bylo ńutno postupovat obezřetně tak, aby nedošlo ke zborcení stěn vrtu. Na několika stanovištích tak bylo nutno zkusit několik konkrétních pozic vrtů, nežli byla nalezena vhodná pozice. Nadzemní část sondy pak byla opatřena ochrannou plastovou trubkou, většinou též se zelenou maskovací textilií, a~informační cedulkou (Obr. \ref{fig:instalace_stanoviste_1} dole).
 \paragraph{Provoz sond, poškození}
-Na většině stanovišť měřily sondy bez problémů, na části z nich bylo měření znehodnoceno netěsností hrotů chrániček. I přes pečlivý výběr konkrétních pozic došlo na pěti místech k poškození či úplnému zničení sond. Na stanovišti 33 došlo k vyhrabání velké části chráničky, zřejmě zvěří (viz Obr. \ref{fig:poskozeni_sond} vpravo). Sondy na stanovištích 19 a 29 byly zničeny při výkopových pracech na vodovodu, při kterých byly například odstraněny i nivelační tyče, vedle nichž byly umístěny. Sonda 20 byla ulomená nad zemí, zřejmě jako důsledek vandalismu (viz Obr. \ref{fig:poskozeni_sond} vlevo). Sonda 24, nacházející se v~podrostu na kraji lesa, pak byla přeseknuta při sečení louky, které neočekávaně zasáhlo i tuto oblast cca 2 metry od hranice louky.
+Na většině stanovišť měřily sondy bez problémů, na části z nich bylo měření znehodnoceno netěsností hrotů chrániček. I přes pečlivý výběr konkrétních pozic došlo na pěti místech k poškození či úplnému zničení sond. Sonda 20 byla ulomená nad zemí, zřejmě jako důsledek vandalismu (viz Obr. \ref{fig:poskozeni_sond} vlevo). Na stanovišti 33 došlo k vyhrabání velké části chráničky, zřejmě zvěří (Obr. \ref{fig:poskozeni_sond} vpravo). Sondy 19 a 29 byly zničeny při výkopových pracech na vodovodu, při kterých byly například odstraněny i nivelační tyče, vedle nichž byly umístěny.  Sonda 24, nacházející se v~podrostu na kraji lesa, pak byla přeseknuta při sečení louky, které neočekávaně zasáhlo i tuto oblast.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\linewidth]{fig/PR/poskozeni_sond.png}
     \caption{Poničené sondy na stnovištích 20 (vlevo) a 33 (vpravo).}
     \label{fig:poskozeni_sond}
 \end{figure}
-
-\clearpage
-\paragraph{Laboratorní kalibrace sond}
-Sondy Odyssey vykazují znatelný rozptyl měřených hodnot jak mezi sebou, tak mezi jednotlivými čidly téže sondy. Z tohoto důvodu bylo přikročeno ke kalibraci všech sond Odyssey. Byla sestrojena kalibrační sestava (viz Obr.\ref{fig:kalibrace} vlevo nahoře), skládající se z~plastového kbelíku s utěsněným otvorem ve dně, do kterého je zasunuta chránička. Objem kbelíku byl pro jednotlivé běhy kalibrace zaplněn materiálem s různou vlhkostí, vždy však shodným pro všechny měřené sondy. V našem případě probíhalo měření v čistém vzduchu, suchém písku, písku nasyceném vodou a čisté vodě. Sonda se posouvala chráničkou tak, aby měření uvnitř kbelíku proběhlo postupně pro všechny čidla sondy. Na konkrétní pozici čidla probíhalo měření vždy jednu minutu, s frekvencí zápisu 10 s. Kromě sond Odyssey proběhlo kontrolní měření i pro sondy PR2.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.95\linewidth]{fig/PR/kalibrace.png}
@@ -931,36 +918,61 @@ Sondy Odyssey vykazují znatelný rozptyl měřených hodnot jak mezi sebou, tak
     \label{fig:kalibrace_rozptyl}
 \end{figure}
 
-
 \clearpage
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.92\linewidth]{fig/cgs_monitoring_uhelna_chmu.png}
-    \caption{Pracovní podklad pro aplikaci na Uhelnou: přehled monitoringu hladin podzemních vod a vazba na meteorologické podklady.}
-    \label{fig:cgs-monitoring-uhelna}
-\end{figure}
+\paragraph{Laboratorní kalibrace sond}
+Sondy Odyssey vykazují znatelný rozptyl měřených hodnot jak mezi sebou, tak mezi jednotlivými čidly téže sondy. Z tohoto důvodu bylo přikročeno ke kalibraci všech sond Odyssey. Byla sestrojena kalibrační sestava (viz Obr.\ref{fig:kalibrace} vlevo nahoře), skládající se z~plastového kbelíku s utěsněným otvorem ve dně, do kterého je zasunuta chránička. Objem kbelíku byl pro jednotlivé běhy kalibrace zaplněn materiálem s různou vlhkostí, vždy však shodným pro všechny měřené sondy. V našem případě probíhalo měření v čistém vzduchu, suchém písku, písku nasyceném vodou a čisté vodě. Sonda se posouvala chráničkou tak, aby měření uvnitř kbelíku proběhlo postupně pro všechny čidla sondy. Na konkrétní pozici čidla probíhalo měření vždy jednu minutu, s frekvencí zápisu 10 s. Kromě sond Odyssey proběhlo kontrolní měření i pro sondy PR2.
+
+
+
+
+\subsection{Meteodata a jejich zdroje}
+
+Pro predikce infiltrací je nutné vycházet z meteorologických dat. Potřebujeme zejména 
+data o srážkách, dále teplotu, vlhkost, rychlost větru a případně efektivní oslunění pro detailnější modely zahrnující vliv vegetace. V prostorovém rozlišení jednotek kilometrů 
+poskytuje nejpřesnější data předpověď ČHMÚ založená na modelu Aladin s krokem 1km. Ta je však 
+k dispozici pouze asi 10 dní zpětně. Data z předpovědi jsou pravidelně stahována a ukládána do ZARR storage pomocí aktivního ingress serveru. Tento dataset však bude použitelný až pro simulace od začátku roku 2026, kdy jsme začali data sbírat.
+
+Pro kalibraci modelů a starší simulace je nutné vycházet z historických dat. Podrobná data o srážkách a teplotách jsou v dlouhé časové řadě dostupná z blízké meteorologické stanice Chotyně. Další měření jsou pak k dispozici až z detailních měření v Liberci. Ani tato stanice však neposkytuje data o efektivním oslunění pro viditelnou a infra oblast. K tomu byla dále využita 
+data z online zdroje \verb'open-meteo.com'. Syntézou uvedených dat pak dostáváme kompletní historickou časovou řadu aktuálně zpracovanou pro 5 let zpětně, což pokrývá období od instalace nové sady hydrologických monitorovacích vrtů.
+
+Data o hladinách podzemní vody byla poskytnuta přímo Českou geologickou službou za kontinuálního měření. Data o čerpání vody na vodním zdroji Uhelná poskytla ČGS zprostředkovaně od Českomoravské vodárenské společno
+
 
 \subsection{Příprava modelu z GIS dat}
+Na základě řady geologických podkladů zpracovala Česká geologická služba GIS podklady pro přípravu hydrologického modelu. Zobrazení podkladů v opensource nástroji QGis je na obrázku \ref{fig:qgis}. Zahrnuje zejména: 
+\begin{itemize}
+\item Polygon hranice výpočetní oblasti ve více verzích, nakonec byla použita verze se zahrnutím dolu Turow \verb`domain_with_mine`.
 
-Zde bude vysvětlena role vrstev dodaných ČGS, jejich zpracování a převod do
-výpočetní podoby.
+\item Skupinu \verb`HG_model_layers` s nadmořské výšky rozhraní geologických vrstev v georeferencovaném rastrovém formátu TIFF:
+\begin{itemize}
+    \item \verb'relief' : svrchní reliéf
+    \item \verb'Q<i>_top' : vrchní hranice kvarterní jílové čočky / mazivrstvy
+    \item \verb'Q<i>_base' : spodní hranice (báze) kvarterní jílové čočky / mezivrstvy
+    \item  \verb'Q_base' : báze kvarteru
+    \item \verb'TNg-merged' : Nadweglové souvrství II, báze
+    \item \verb'TCb3-merged': uhelná vrstva 3
+    \item \verb'TNw-merged' : Nadweglové souvrství I, báze
+    \item \verb'TCb2-merged': uhelná vrstva 2
+    \item \verb'TMw-merged' : Meziweglové souvrství, báze
+    \item \verb'TCb1-merged': uhelná sloj 1, báze
+    \item \verb'Pw-merged' : Podweglové souvrství, báze celého modelu, 
+\end{itemize}
+\item Polohy hydrologických monitorovacích vrtů.
+\item Blízké meteostanice.
+\end{itemize}
+Označení vrstev vychází z polského geologického členění v oblasti.
+Kompletní gis projekt je nutné stáhnout pomocí \verb'dvc pull', viz. popis na hlavní stránce repozitáře. Následně je dispozici v adresáři \verb'hlavo/deep_model/GIS'.
+Materiálová stavba modelu zahrnuje čtyři materiály: kvarterní pískové sedimenty, kvarterní jíly, tercierní sedimenty, uhelné sloje. Jejich parametry byly řádově odhadnuty na základě analogií.
 
-\subsection{Hladiny podzemních vod a kalibrace}
-
-Zde bude popsáno, která data o hladinách podzemních vod byla k dispozici,
-jak sloužila nebo budou sloužit pro kalibraci a jaká omezení z toho plynou.
+%AGENT: vytvoř tabulku s odhadem materiálových parametrů log_10 k hydraulická vodivost, a parametry vG modelu: porozita = th_s, th_r, n, alpha. 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.92\linewidth]{fig/cgs_monitoring_uhelna_chmu_5x.png}
-    \caption{Pracovní detail k části o kalibraci hlubokého modelu na lokalitě Uhelná.}
-    \label{fig:cgs-monitoring-uhelna-detail}
+    \includegraphics[width=0.96\linewidth]{fig/QGIS_resources.png}
+    \caption{GIS vrstvy definující geologii oblasti.}
+    \label{fig:qgis}
 \end{figure}
 
-\subsection{Ukázka současného použití systému}
-
-Zde je prostor pro jednu až dvě reprezentativní ukázky datového toku,
-vizualizace nebo výsledku modelování pro lokalitu Uhelná.
 
 \section{Aplikace na jinou lokalitu}
 
