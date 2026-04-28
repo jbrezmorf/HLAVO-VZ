@@ -1015,117 +1015,64 @@ povrchů, půd a vegetačního krytu. Praktická zkušenost z Uhelné ukázala, 
 nejde jen o hydrologickou reprezentativnost, ale i o logistiku dlouhodobého
 provozu: přístupnost stanoviště, možnost bezpečné instalace sond, riziko
 poškození zemědělskou technikou, zvěří nebo stavební činností a možnost
-pravidelné kontroly. Po výběru stanovišť následuje navrtání vrtů nebo
-instalace chrániček a osazení samotných profilových sond. V této fázi se již
-ukazuje, jak moc návrh sítě ovlivňuje místní geologie v prvních metrech pod
-povrchem: v jílovitých a hlinitých půdách je instalace obvykle snadnější než v
-nesoudržných písčitých sedimentech.
-
-Po instalaci přechází lokalita do režimu pravidelného provozu. Ten zahrnuje
-stahování dat, kontrolu funkce čidel, zápis o stavu jednotlivých sond a
-průběžnou údržbu ochranných prvků. Dosavadní zkušenost ukazuje, že pro
-lokalitu rozsahu Uhelné je realistické počítat s přibližně čtyřmi servisními
-výjezdy za čtvrt roku, přičemž četnost může být dočasně vyšší po instalaci
-nové sítě nebo po mimořádných událostech. Součástí běžného provozu je také
-zpracování terénních záznamů, evidence poškození a rozhodnutí, zda je dané
-stanoviště stále reprezentativní, nebo zda je třeba jeho úprava.
+pravidelné kontroly. Po výběru stanovišť následuje instalace chrániček a osazení samotných profilových sond. Cena jedné sondy je okolo 10 tisíc Kč (cena v březnu 2026), instalace jedné sondy zabere zhruba jednu hodinu, pro větší lokalitu se daba prodloužo kvůli delším přejezdům. I pro výrazně větší lokalitu by měla být dostačující síť čítající desítky sond. Kompletní instalace teerénního měření by měla být realizovatelná během jednoho měsíce jedním technikem. Pravidelný provoz zahrnuje výjezdy ve čtvrtletních intervalech se servisní dobou cca 30minut na sondu bez dopravy. Servis zahrnuje zejména stažení dat, výměnu baterií, a kontrolu fyzického stavu. Součástí běžného provozu je také
+zpracování terénních záznamů.
 
 Na tuto část přímo navazuje zpracování meteorologických dat pro povrchový
 model. Z hlediska softwaru jde o dobře přenositelnou část systému. HLAVO již
 obsahuje nástroje pro zpracování časových řad a pro jejich převod na vstupy
-jednorozměrného Richardsova modelu v ParFlow a pro model evapotranspirace.
-Zdroj meteorologických dat lze změnit hlavně úpravou konfigurace, typicky mezi
-stanicemi ČHMÚ, případně doplnit další online zdroje tam, kde chybí některé
-radiační nebo odvozené veličiny. Pro novou lokalitu tak není hlavním
-omezením software, ale rozhodnutí, jaká kombinace staničních a interpolovaných
-dat bude z hlediska dlouhodobé homogenity a dostupnosti nejvhodnější.
+povrchového modelu. Aktuální zdroje dat pro lokalitu Uhelná jsou v podobné kvalitě dostupná pro celou ČR, naopak lze očekávat spíše lepší pokrytí meteorologickými stanicemi, než v případě Uhelné přímo na hranici s Polskem.
+Změna konfigurace, nastavení a odladění stahování dat zebere zhruba jeden člověko týden.  
 
-Při přenosu na jinou lokalitu je proto povrchová část systému v zásadě
-replikovatelná: je třeba znovu navrhnout síť měření, zorganizovat její provoz
-a nastavit odpovídající meteorologické vstupy. Pokud je cílem pouze sledovat
-vývoj vlhkosti v přípovrchové vrstvě a z ní odvozenou hlubší infiltraci, je
-právě tato část výsledku nejsnáze přenositelná a může být nasazena i dříve,
-než bude dokončen detailní hluboký model.
+Lze konstatovat, že zprovoznění povrchové části systému je snadno přenositelné zejména kvůli snadnosti instalace měření a dostupnosti dat.
 
 \subsection{Hluboký model a jeho kalibrace}
 
-Podstatně náročnější je přenos hluboké části systému. Zde již nestačí
-konfiguračně přepnout datový zdroj nebo změnit seznam měřicích stanovišť, ale
-je nutné sestavit lokalitně specifický třírozměrný model. To předpokládá
+Podstatně náročnější je přenos hluboké části systému. Sestavení hydrologického modelu předpokládá
 nejprve přehled dostupných hydrologických a geologických dat: hranice zájmové
 oblasti, digitální model reliéfu, rozhraní geologických vrstev, informace o
 stratigrafii a hydraulických vlastnostech hornin a zejména přístup k
-dlouhodobým časovým řadám hladin podzemní vody, případně i k datům o
-pramenech nebo jiných projevech odvodnění systému. Bez těchto dat nelze
-kalibraci hlubokého modelu založit na skutečné odezvě lokality.
+dlouhodobým časovým řadám hladin podzemní vody. Pro lokalitu Uhelná to nebylo relevantní, ale ke kalibraci hydrologického modelu může přispět i případný dlouhodobý monitoring pramenů a měření stáří vody. 
 
-Jak ukázala Uhelná, velkou výhodou systému HLAVO je, že samotné sestavení
-modelu je po technické stránce již formalizováno. Z GIS podkladů lze pomocí
-nástrojů v repozitáři HLAVO sestavit výpočetní mřížku, přiřadit materiály,
-doplnit konfigurační soubor a připravit běh hlubokého modelu nad jádrem
-MODFLOW~6. Podobně lze samostatně měnit materiálové parametry a využít
-automatizované výstupy pro kontrolu sestaveného modelu. Tato formalizace však
+Samotná příprava modelu má pak již dobrou technickou podporu. Geolog na základě dostupných dat vytvoří výškové mapy klíčových geologických rozhraní v běžně dostupných GIS nástrojích, po uspořádání do vhodné struktury je možné vrstvy automaticky zpracovat do funkčního hydrologického modelu na základě relativně malého konfiguračního souboru. 
+Tato formalizace však
 neodstraňuje základní problém: na nové lokalitě musí nejprve existovat
 dostatečně spolehlivý geologický výklad, který určí, jaké vrstvy mají být do
 modelu zahrnuty a kde leží jejich rozhraní.
 
-Po sestavení geometrie následuje odhad orientačních hydraulických a retenčních
-parametrů materiálů a jejich následná kalibrace. Startovní intervaly mohou být
-odvozeny analogicky jako v \tabul{tab:hg-parametry}, ale u nové lokality jde
-jen o první odhad. Vlastní kalibrace musí být vedena proti dlouhým časovým
-řadám hladin podzemní vody a musí rozlišit, co je důsledkem nejistoty
-materiálových parametrů, co je dáno zjednodušením geometrie modelu a co je
-způsobeno kvalitou vstupních meteorologických dat. Teprve po této fázi má
-smysl použít sdružený provoz, v němž povrchový model generuje infiltrační
-vstupy pro hluboký model a ten je následně využit pro predikci hladin
-podzemní vody, například v pravidelném čtvrtletním režimu.
+Po sestavení geometrie následuje odhad orientačních hydraulických a retenčních parametrů materiálů a jejich následná kalibrace. Pro kalibraci je nutná dostupnost dlouhodobých historických dat o hladinách podzemní vody ve vrtech. Při předpokládaném mnohem menším počtu vrtů oproti Uhelné patrně nebude problém dosáhnout shody modelu s dostupnmi daty. Při dostatečně dlouhé časové řadě (desítky let) lze předpokládat i dobrou predikci na stejných vrtech, ale predikce pro celou plochu oblasti může být značně ovlivněna specifickmi podmínkami malého množství vrtů. Pro eliminaci této situace by byla vhodná přítomnost alespoň tři vrtů v oblasti s relativně homogení geologií.
 
-Na nové lokalitě je také nutné ověřovat model nejen podle samotných časových
-řad, ale i podle prostorového uspořádání. K tomu slouží třírozměrné výstupy ve
-formátu VTK a mapové či řezové vizualizace, které umožní zkontrolovat, zda
-interpretovaná stavba modelu odpovídá očekávaným geologickým vztahům, zda
-neobsahuje zjevné artefakty a zda hydraulická odezva modelu není výsledkem
-numericky sice přijatelných, ale geologicky neobhajitelných kombinací
-parametrů. V tomto smyslu je hluboký model méně přenositelný než povrchová
-část systému, avšak po zajištění kvalitních podkladů je jeho workflow již
-dobře opakovatelné.
 
-\subsection{Hlavní problematické body přenosu}
+\subsection{Problematické body aplikace na jinou lokalitu}
 
-Z pohledu aplikace v České křídové tabuli je tedy hlavním omezením přenosu
+Z pohledu aplikace v České křídové tabuli je hlavním omezením přenosu
 systému nikoli programové vybavení, ale místní znalost hydrogeologické stavby
-a dostupnost dat pro kalibraci. Pro povrchovou část je rozhodující, zda lze na
-lokalitě dlouhodobě provozovat síť profilových sond s přijatelnými nároky na
-údržbu. Pro hlubokou část je rozhodující, zda jsou k dispozici dostatečně
+a dostupnost dat pro kalibraci. Pro povrchovou část je rozhodující, zda lze na lokalitě dlouhodobě provozovat síť profilových sond s přijatelnými nároky na údržbu. Pro hlubokou část je rozhodující, zda jsou k dispozici dostatečně
 podrobné GIS a geologické podklady a zejména dostatečně dlouhé a věrohodné
 časové řady hladin podzemní vody. Bez nich by bylo možné model technicky
-sestavit, ale nikoli věrohodně ověřit.
+sestavit, ale kvalita predikcí bude značně nejistá.
 
-Dlouhodobý provoz na Uhelné má v tomto ohledu odpovědět na několik praktických
-otázek důležitých i pro jiné lokality. První otázkou je stabilita a servisní
-náročnost sítě profilového měření v horizontu několika let. Druhou otázkou je,
-nakolik je možné z provozních dat průběžně odhalovat a opravovat poruchy,
-aniž by došlo ke ztrátě kontinuity časových řad. Třetí otázkou je, zda
-stávající způsob kalibrace dokáže dostatečně oddělit nejistotu povrchového
-modelu, nejistotu meteorologických vstupů a nejistotu hlubokého modelu. A
-čtvrtou otázkou je, jak často je nutné model na lokalitě znovu
-rekalibrovat, aby si zachoval predikční schopnost i při změnách využití
-území, vegetačního krytu nebo při mimořádných hydrologických epizodách.
 \section{Závěr}
 
-Závěr má shrnout, co projekt skutečně přinesl z pohledu metodiky,
-softwarového řešení, terénního ověření a připravenosti pro další použití.
-Současně je vhodné otevřeně uvést, které části systému byly dotaženy do
-prakticky použitelné podoby a které zůstávají podmíněny doplněním dat nebo
-další kalibrací.
+V rámci projektu HLAVO se podařilo implementovat ucelený softwarový systém pro predikci hladin podzemní vody a realizovat jeho aplikaci na lokalitě Uhelná tak, že spolu se sítí profilových měření půdní vlhkosti vytváří funkční vzorek.
+Zhodnocení reálných predikcí a výstupů sytému bude možné až s odstupem několika let v rámci udržitelnosti projektu. V průběhu nejvýše dvou let by mělo být možné zhodnotit reálnou funkčnost predikování infiltrace pomocí asimilace  povrchového modelu s meteorologickými daty a daty z profilových měření vlhkosti. Bude vhodné porovnat predikci této infiltrace oproti modelu kalibrovanému pomocí profilových měření, s následnou predikcí infiltrace již bez profilového měření. V delším horizontu cca pěti let bude možné reálně zhodnotit i predikce hladin podzemní vody.
 
-V závěru bude také vhodné explicitně oddělit:
+Vzhledem ke zpožděním projektu ještě probíhá kalibrace systému a optimalizace samotného kalibračního procesu. První kalibrace bude dokončena a publikována k polovině roku 2026, následovat budou kalibrace po čtvrtletním sběru dat. 
+Pro každou aktualizaci provedeme predikcí hladin podzemní vody na dva roky při aplikaci průměrné infiltrace z předchozích dvou let. Výsledky jsou zapisovány do online úložiště pro jednotlivá čtvrtletí samostatně takže bude možné následně vyhodnotit vývoj kvality predikcí.
 
-\begin{itemize}
-    \item přínosy projektu pro MŽP a aplikační praxi,
-    \item technické limity současného řešení,
-    \item doporučení pro další nasazení nebo navazující vývoj.
-\end{itemize}
+V rámci navazujícího výzkumu plánujeme několik dílčích vylepšení.
+Asimilace povrchového modelu je výpočetně velmi náročná, jelikož stav systému zahrnuje tlakové výšky pro všechny uzly diskretizace. Počet realizací dopředného výpočtu tak závisí na diskretizaci nikoliv na reálné variabilitě tlakové výšky. Chceme proto aplikovat analýzu principálních komponent adaptivně v každém kroku Kalmánova filtru a realizovat volbu sigma bodů jen a redukovaném podprostoru. 
+
+Dále chceme pokračovat v dlohodobějších testech na koloně. Vzhledem k intenzivnímu vývoji softwarové části nemáme dostatek laboratorních simulovaných 
+dešťových epizod pro pečlivé ověření kalibračního procesu samotného povrchového modelu. Nový kalibrační proces zároveň nebyl ještě aplikován na již existující 
+laboratorní průběhy.
+
+V závislosti na výsledcích kalibrací celého sdruženého modelu a zejména při 
+problémech s konvergencí chceme vyzkoušet i kalibraci vybraných rozhraní geologických vrstev. Zejména rozhraní kvarterních jílových vrstev není veskutečnosti ostré, ale ve vrtných jádrech může mít rozsah několika desítek centimetrů. I plošné ohraničení čoček je nejisté a aktuální rozsah je závislý na plošném rozložení vrtů.
+
+Tým TUL usiluje o zapojení do dalších hydrologických projektů a má proto 
+zájem na dalším rozvoji výzkumu s využitím dat z lokality Uhelná.
+
 
 \printbibliography[heading=bibintoc,title={Použitá literatura}]
 
